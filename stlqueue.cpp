@@ -1,4 +1,3 @@
-#include "readerwriterqueue/readerwriterqueue.h"
 
 #include <iostream>
 #include <thread>
@@ -7,7 +6,6 @@
 #include <mutex>
 #include "utils.h"
 
-using namespace moodycamel;
 using namespace std; 
 int g_maxCount  = 100000; 
 
