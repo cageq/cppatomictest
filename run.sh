@@ -1,7 +1,6 @@
 #!/bin/bash
 for i in `seq 1 100`;
 do
-	echo  "spsc : "
 #	./queue >> run.log 
 #	./stlqueue >> run.log 
 #	./follyqueue >> run.log 
