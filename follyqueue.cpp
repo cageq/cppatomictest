@@ -85,7 +85,7 @@ int main(int argc,char *argv[])
 {
 	if (argc >=2 ){
 		g_maxCount = atoi(argv[1]); 
-		printf("max count is %d\n",g_maxCount); 
+		//printf("max count is %d\n",g_maxCount); 
 	}
 
 
@@ -96,7 +96,7 @@ int main(int argc,char *argv[])
 	reader.join(); 
 	writer.join(); 
 	clock_t finish = clock();
-	std::cout<<"duration:"<<finish - start<<"ms"<<std::endl;
+	std::cout<<argv[0] << " duration:"<<finish - start<<"ms"<<std::endl;
 	return 0; 
 
 }

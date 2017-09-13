@@ -5,9 +5,11 @@ do
 #	./queue >> run.log 
 #	./stlqueue >> run.log 
 #	./follyqueue >> run.log 
+count=500000
 
-	./queue  1000000
-	./stlqueue 1000000
-	./follyqueue  1000000
-	./boostqueue  1000000
+	./queue   $count 
+	./stlqueue  $count
+	./follyqueue  $count
+	./spscqueue  $count
+	./boostqueue  $count
 done
