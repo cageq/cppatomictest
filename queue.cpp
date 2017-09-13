@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <thread>
-#include <unistd.h>
 #include "utils.h"
 
 using namespace moodycamel;

@@ -2,6 +2,12 @@
 #define __UTILS_H__
 
 
+#ifdef _WIN32 
+#define usleep Sleep
+#else 
+#include <unistd.h>
+#endif 
+
 #ifndef NDEBUG
 //#define Log(msg) do{ std::cout << __FILE__ << "(@" << __LINE__ << "): " << msg << '\n'; } while( false )
 #define Log(msg) do{ std::cout <<   msg << '\n'; } while( false )

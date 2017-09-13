@@ -14,6 +14,8 @@ link_libraries(boost_system)
 
 if(APPLE)
 link_libraries(boost_thread-mt)
+elseif(UNIX)
+
 else()
 link_libraries(boost_thread)
 endif()
