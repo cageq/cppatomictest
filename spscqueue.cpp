@@ -61,7 +61,7 @@ int read_proc()
 			{
 			//int* front = q.peek();
 			bool ret = q.try_dequeue(number); 
-			if (!ret)
+			if (ret)
 			{
 				Log("result is "<< result << " num is " << number ); 
 				result = number; 
