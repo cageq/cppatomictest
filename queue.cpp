@@ -20,18 +20,18 @@ int rand_step()
 }
 std::thread writer; 
 std::thread reader; 
-int index =0;
+int g_index =0;
 int write_proc()
 {
 
 	 writer = std::thread([&](){
-			while( index <= g_maxCount)
+			while( g_index <= g_maxCount)
 			{
 			int step = rand_step(); 
 			Log(" enqueue "<< step<< " to queue :" ); 
 			while(step -- > 0)
 			{
-			q.enqueue(index++);                       // Will allocate memory if the queue is full
+			q.enqueue(g_index++);                       // Will allocate memory if the queue is full
 			}
 			usleep(1); 
 				//bool succeeded = q.try_enqueue(18);  // Will only succeed if the queue has an empty slot (never allocates)

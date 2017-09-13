@@ -25,12 +25,12 @@ int rand_step()
 }
 std::thread writer; 
 std::thread reader; 
-int index =0;
+int g_index =0;
 int write_proc()
 {
 
 	writer = std::thread([&](){
-			while( index <= g_maxCount)
+			while( g_index <= g_maxCount)
 			{
 			int step = rand_step(); 
 			Log( " enqueue "<< step<< " to queue " ); 
@@ -39,7 +39,7 @@ int write_proc()
 			step--; 
 
 			{
-			q.enqueue(index++); 
+			q.enqueue(g_index++); 
 			}
 			}
 			usleep(1); 
