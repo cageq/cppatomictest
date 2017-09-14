@@ -21,13 +21,10 @@ int rand_step()
 	//return step; 
 	return 50; 
 }
-std::thread writer; 
-std::thread reader; 
 int g_index =0;
 int write_proc()
 {
 
-	writer = std::thread([&](){
 			while( g_index <= g_maxCount)
 			{
 			int step = rand_step(); 
@@ -45,7 +42,6 @@ int write_proc()
 			}
 			Log(" write finished " ); 
 
-			}); 
 	return 0; 
 
 }
@@ -53,30 +49,28 @@ int write_proc()
 int result =0; 
 int read_proc()
 {
-	int number = 0 ; 
-	reader = std::thread([&](){
-			// You can also peek at the front item of the queue (consumer only)
-			while(result <= g_maxCount)
-			{
-			//int* front = q.peek();
-			if (!q.empty())
-			{
+    int number = 0 ; 
+    // You can also peek at the front item of the queue (consumer only)
+    while(result <= g_maxCount)
+    {
+	//int* front = q.peek();
+	if (!q.empty())
+	{
 
-			std::lock_guard<std::mutex> guard(g_pages_mutex);
-			result = q.front();
-			q.pop_front(); 
-			Log("result is "<< result << " num is " << number ); 
-			}
-			else 
-			{
-			usleep(1); 
-			}
-			}
-			Log(" read finished " ); ; 
-			}); 
+	    std::lock_guard<std::mutex> guard(g_pages_mutex);
+	    result = q.front();
+	    q.pop_front(); 
+	    Log("result is "<< result << " num is " << number ); 
+	}
+	else 
+	{
+	    usleep(1); 
+	}
+    }
+    Log(" read finished " ); ; 
 
 
-	return 0; 
+    return 0; 
 }
 
 
@@ -90,11 +84,11 @@ int main(int argc,char *argv[])
 
 
 	clock_t start = clock();
-	write_proc(); 
-	read_proc(); 
-
+	std::thread writer(write_proc); 
+	std::thread reader(read_proc); 
 	reader.join(); 
 	writer.join(); 
+
 	clock_t finish = clock();
 	std::cout<<argv[0] << "   duration:"<<finish - start<<"ms"<<std::endl;
 	return 0; 
