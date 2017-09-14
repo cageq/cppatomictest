@@ -81,7 +81,6 @@ int main(int argc,char *argv[])
     }
 
     clock_t start = clock();
-
     std::thread writer(write_proc); 
     std::thread reader(read_proc); 
     reader.join(); 
