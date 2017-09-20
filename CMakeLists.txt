@@ -5,7 +5,8 @@ project (atomic)
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 
-include_directories("rapidjson/include")
+#include_directories("rapidjson/include")
+include_directories("libs")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -o2 -DNDEBUG ")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g ")
@@ -13,14 +14,20 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -o2 -DNDEBUG ")
 link_libraries(boost_system)
 link_libraries(boost_thread)
  
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+
 # add the executable
-set(SRC_LIST  test.cpp ) 
-add_executable(atomic ${SRC_LIST})
-add_executable(queue queue.cpp)
-add_executable(stlqueue stlqueue.cpp)
-add_executable(follyqueue follyqueue.cpp)
-add_executable(spscqueue spscqueue.cpp)
-add_executable(boostqueue boostqueue.cpp)
+#set(SRC_LIST  test.cpp ) 
+#add_executable(atomic ${SRC_LIST})
+add_executable(queue spsc/queue.cpp)
+add_executable(stlqueue spsc/stlqueue.cpp)
+add_executable(follyqueue spsc/follyqueue.cpp)
+add_executable(spscqueue spsc/spscqueue.cpp)
+add_executable(boostqueue spsc/boostqueue.cpp)
 
 
 
