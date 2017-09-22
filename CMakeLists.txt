@@ -30,6 +30,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # add the executable
 #set(SRC_LIST  test.cpp ) 
 #add_executable(atomic ${SRC_LIST})
+add_executable(test spsc/test.cpp)
 add_executable(queue spsc/queue.cpp)
 add_executable(stlqueue spsc/stlqueue.cpp)
 add_executable(follyqueue spsc/follyqueue.cpp)
