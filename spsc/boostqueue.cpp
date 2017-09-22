@@ -22,24 +22,27 @@ int rand_step()
 	//return step; 
 	return 50; 
 }
-int g_index =0;
+int g_index = 0;
 int write_proc()
 {
-	while( g_index <= g_maxCount)
+	while( g_index <= g_maxCount  )
 	{
 		int step = rand_step(); 
-		Log( " enqueue "<< step<< " to queue " ); 
+		//Log( " enqueue "<< step<< " to queue " ); 
 		while(step  > 0)
 		{
-			step--; 
 			{
-				q.push(g_index++); 
+				int  ret =  q.push(g_index++); 
+				if (ret )
+				{
+					step--; 
+				}
+
 			}
 		}
-		usleep(1); 
+		//usleep(1); 
 	}
-	Log(" write finished " ); 
-
+	Log(" write finished  :"<< g_index  << " ###"); 
 	return 0; 
 }
 
@@ -59,7 +62,8 @@ int read_proc()
 		}
 		else 
 		{
-			usleep(1); 
+			Log ("ret is "<< ret); 
+			//usleep(1); 
 		}
 	}
 	Log(" read finished " ); ; 
