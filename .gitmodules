@@ -1,6 +1,3 @@
-[submodule "readerwriterqueue"]
-	path = readerwriterqueue
+[submodule "libs/readerwriterqueue"]
+	path = libs/readerwriterqueue
 	url = https://github.com/cameron314/readerwriterqueue.git
-[submodule "concurrentqueue"]
-	path = concurrentqueue
-	url = https://github.com/cameron314/concurrentqueue.git
