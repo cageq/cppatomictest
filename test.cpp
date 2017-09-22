@@ -14,7 +14,7 @@ void click()
     for(int i=0; i<1000000;++i)
     {
         // 对全局数据进行无锁访问 
-        total += 1;     
+        total ++;     
     }
 }
  
