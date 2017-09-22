@@ -31,16 +31,15 @@ int write_proc()
 		//Log( " enqueue "<< step<< " to queue " ); 
 		while(step  > 0)
 		{
-			{
-				int  ret =  q.push(g_index++); 
+				int  ret =  q.push(g_index); 
 				if (ret )
 				{
+					g_index++; 
 					step--; 
 				}
 
-			}
 		}
-		//usleep(1); 
+		usleep(1); 
 	}
 	Log(" write finished  :"<< g_index  << " ###"); 
 	return 0; 

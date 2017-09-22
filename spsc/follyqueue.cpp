@@ -37,9 +37,10 @@ int write_proc()
 		Log( " enqueue "<< step<< " to queue " ); 
 		while(step  > 0)
 		{
-				bool ret  = q.enqueue(g_index++); 
+				bool ret  = q.enqueue(g_index); 
 				if (ret)
 				{
+					g_index++; 
 					step--; 
 				}
 		}

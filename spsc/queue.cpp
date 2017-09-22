@@ -27,9 +27,10 @@ int write_proc()
 		Log(" enqueue "<< step<< " to queue :" ); 
 		while(step > 0)
 		{
-			bool ret = q.enqueue(g_index++);                       // Will allocate memory if the queue is full
+			bool ret = q.enqueue(g_index);                       // Will allocate memory if the queue is full
 			if (ret ) 
 			{
+				g_index++; 
 				step -- ; 
 			}
 		}
