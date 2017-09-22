@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <thread>
 #include <queue>
@@ -16,8 +15,8 @@ deque<int> q(100);       // Reserve space for at least 100 elements up front
 
 int rand_step()
 {
-//	std::srand(std::time(0));
-//	int step= rand()%49+1; 
+	//	std::srand(std::time(0));
+	//	int step= rand()%49+1; 
 	//return step; 
 	return 50; 
 }
@@ -25,22 +24,22 @@ int g_index =0;
 int write_proc()
 {
 
-			while( g_index <= g_maxCount)
-			{
-			int step = rand_step(); 
-			Log( " enqueue "<< step<< " to queue " ); 
-			while(step  > 0)
-			{
+	while( g_index <= g_maxCount)
+	{
+		int step = rand_step(); 
+		Log( " enqueue "<< step<< " to queue " ); 
+		while(step  > 0)
+		{
 			step--; 
 
 			{
-			std::lock_guard<std::mutex> guard(g_pages_mutex);
-			q.push_back(g_index++);                       // Will allocate memory if the queue is full
+				std::lock_guard<std::mutex> guard(g_pages_mutex);
+				q.push_back(g_index++);                   
 			}
-			}
-			usleep(1); 
-			}
-			Log(" write finished " ); 
+		}
+		usleep(1); 
+	}
+	Log(" write finished " ); 
 
 	return 0; 
 
@@ -49,28 +48,28 @@ int write_proc()
 int result =0; 
 int read_proc()
 {
-    int number = 0 ; 
-    // You can also peek at the front item of the queue (consumer only)
-    while(result <= g_maxCount)
-    {
-	//int* front = q.peek();
-	if (!q.empty())
+	int number = 0 ; 
+	// You can also peek at the front item of the queue (consumer only)
+	while(result <= g_maxCount)
 	{
+		//int* front = q.peek();
+		if (!q.empty())
+		{
 
-	    std::lock_guard<std::mutex> guard(g_pages_mutex);
-	    result = q.front();
-	    q.pop_front(); 
-	    Log("result is "<< result << " num is " << number ); 
+			std::lock_guard<std::mutex> guard(g_pages_mutex);
+			result = q.front();
+			q.pop_front(); 
+			Log("result is "<< result << " num is " << number ); 
+		}
+		else 
+		{
+			usleep(1); 
+		}
 	}
-	else 
-	{
-	    usleep(1); 
-	}
-    }
-    Log(" read finished " ); ; 
+	Log(" read finished " ); ; 
 
 
-    return 0; 
+	return 0; 
 }
 
 
