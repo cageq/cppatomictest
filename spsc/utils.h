@@ -6,6 +6,7 @@
 #define usleep Sleep
 #else 
 #include <unistd.h>
+#include <sys/time.h> 
 #endif 
 
 #ifndef NDEBUG
