@@ -3,7 +3,12 @@
 
 
 #ifdef _WIN32 
-#define usleep Sleep
+inline void mysleep(int a )
+{
+	Sleep(0); 
+}
+#define usleep mysleep 
+
 #else 
 #include <unistd.h>
 #include <sys/time.h> 
