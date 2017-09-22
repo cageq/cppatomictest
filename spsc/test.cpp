@@ -3,11 +3,9 @@
 #include <iostream>
 #include <time.h>
 
-using namespace std;
 // 全局的结果数据 
 //long total = 0; 
-atomic_long total(0);
-
+std::atomic_long total(0);
 // 点击函数
 void click()
 {
@@ -33,9 +31,15 @@ int main(int argc, char* argv[])
     threads.join_all();
     // 计时结束
     clock_t finish = clock();
+	total = 100; 
     // 输出结果
-    cout<<"result:"<<total<<endl;
-    cout<<"duration:"<<finish -start<<"ms"<<endl;
+	std::cout<<"result:"<<total<<std::endl;
+	std::cout<<"duration:"<<finish -start<<"ms"<<std::endl;
+
+	std::atomic<bool> flag; 
+	std::cout << " is lock free " << flag.is_lock_free() << std::endl; 
+
+	printf(" total is %ld\n",total.load()); 
     return 0;
 }
 
