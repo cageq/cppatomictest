@@ -3,6 +3,7 @@
 
 
 #ifdef _WIN32 
+#include <windows.h>
 inline void mysleep(int a )
 {
 	Sleep(0); 
