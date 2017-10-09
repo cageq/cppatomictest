@@ -41,6 +41,7 @@ add_executable(stlqueue spsc/stlqueue.cpp)
 add_executable(follyqueue spsc/follyqueue.cpp)
 add_executable(spscqueue spsc/spscqueue.cpp)
 add_executable(boostqueue spsc/boostqueue.cpp)
+add_executable(basic basic/test.cpp)
 
 
 
