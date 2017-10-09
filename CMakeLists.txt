@@ -18,7 +18,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11  -o2 -DNDEBUG ")
 link_libraries(boost_thread-mt)
 elseif(UNIX)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -o2 -DNDEBUG ")
-link_libraries(boost_thread-mt)
+#link_libraries(boost_thread-mt)
 link_libraries(boost_thread)
 else()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -o2 -DNDEBUG ")
@@ -42,6 +42,8 @@ add_executable(follyqueue spsc/follyqueue.cpp)
 add_executable(spscqueue spsc/spscqueue.cpp)
 add_executable(boostqueue spsc/boostqueue.cpp)
 add_executable(basic basic/test.cpp)
+add_executable(threads basic/threads.cpp)
+add_executable(simple basic/simple.cpp)
 
 
 
