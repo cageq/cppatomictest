@@ -5,6 +5,7 @@ git clone https://github.com/cageq/cppatomictest.git
 cd cppatomictest 
 
 git submodule init 
+
 git submodule update 
 
 cmake . 
